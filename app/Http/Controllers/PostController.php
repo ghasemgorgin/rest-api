@@ -14,8 +14,7 @@ class PostController extends Controller
         return PostResource::collection($post);
    }
    public function show($id){
-    $posts=Post::findOrfail($id);
-    
+    $posts=Post::with('writer')->findOrfail($id);
     return  new PostResource($posts);
 
    }
