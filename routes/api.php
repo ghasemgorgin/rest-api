@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,10 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::get('/post',[PostController::class, 'index']);
-Route::get('/post/{id}',[PostController::class, 'show']);
-Route::get('/post2/{id}',[PostController::class, 'show2']);
+Route::get('/post',[PostController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('/post/{id}',[PostController::class, 'show'])->middleware(['auth:sanctum']);
+// Route::get('/post2/{id}',[PostController::class, 'show2']);
 
-
+Route::post('/login',[AuthenticationController::class,"login"]);
 
 
