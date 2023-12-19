@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CalculateController;
+use App\Http\Controllers\WebsocketController;
 use App\Http\Controllers\AuthenticationController;
 
 /*
@@ -25,5 +27,8 @@ Route::get('/post/{id}',[PostController::class, 'show'])->middleware(['auth:sanc
 // Route::get('/post2/{id}',[PostController::class, 'show2']);
 
 Route::post('/login',[AuthenticationController::class,"login"]);
+Route::get('/logout',[AuthenticationController::class,"logout"])->middleware(['auth:sanctum']);
+Route::get('/me',[AuthenticationController::class,"me"])->middleware(['auth:sanctum']);
 
+// Route::get('/Calculate',[CalculateController::class,"index"]);
 
