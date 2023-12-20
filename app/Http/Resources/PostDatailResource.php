@@ -17,7 +17,9 @@ class PostDatailResource extends JsonResource
         return [
             'id'=>$this->id,
             'title'=>$this->title,
+            'new_content'=>$this->new_content,
             'author'=>$this->author,
+            'writer'=>$this->whenLoaded('writer'),
         ];
     }
 }

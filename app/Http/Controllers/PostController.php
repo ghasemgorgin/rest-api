@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PostDatailResource;
-use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Resources\PostResource;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\PostDatailResource;
 
 class PostController extends Controller
 {
@@ -23,4 +24,17 @@ class PostController extends Controller
       $posts=Post::findOrfail($id);
       return    new PostDatailResource($posts);
      }
+
+
+     public function store(Request $request){
+          $validate=$request->validate([
+               'title' => 'required|max:255',
+               'new_conent' => 'required'
+          ]);
+          // return response()->json("ok in the store");
+          $request['author']=Auth::user()->id;
+          $post=Post::create($request->all());
+          return    new PostDatailResource($post->loadMissing('writer:id,username')); 
+     }
+
 }
