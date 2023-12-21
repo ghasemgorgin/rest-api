@@ -26,8 +26,11 @@ use App\Http\Controllers\AuthenticationController;
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/logout',[AuthenticationController::class,"logout"]);
     Route::get('/me',[AuthenticationController::class,"me"]);
+    Route::post('/post',[PostController::class,"store"]);
+    Route::patch('/post/{id}',[PostController::class,"update"])->middleware('Userpost');
+    Route::delete('/post/{id}',[PostController::class,"destroy"])->middleware('Userpost');
 });
-Route::post('/post',[PostController::class,"store"]);
+
 
 
 

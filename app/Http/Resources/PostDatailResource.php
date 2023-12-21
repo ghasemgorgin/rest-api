@@ -19,7 +19,8 @@ class PostDatailResource extends JsonResource
             'title'=>$this->title,
             'new_content'=>$this->new_content,
             'author'=>$this->author,
-            'writer'=>$this->whenLoaded('writer'),
+            'created_at'=>date_format($this->created_at,"Y-m-d H:i:s"),
+            'writer'=>$this->whenLoaded('writer')
         ];
     }
 }

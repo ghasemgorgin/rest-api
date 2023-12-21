@@ -38,7 +38,7 @@ class AuthenticationController extends Controller
     public function me(Request $request){
         $user=Auth::user();
         $post=Post::where('user',$user->id);
-
+        dd($user);
         return response()->json(Auth::user());
 
 

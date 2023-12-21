@@ -13,7 +13,7 @@ class Post extends Model
 
     protected $fillable=[
         'title',
-        'new-content',
+        'new_content',
         'author'
     ];
     public function writer(): BelongsTo{
